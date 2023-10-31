@@ -8,6 +8,8 @@
 
 void showLoading();
 int registration_driver();
+int countRowsInCSV(const char *filename);
+
 
 typedef struct
 {
@@ -53,8 +55,18 @@ start:
 
         
         Account account[100];
+         const char *filename = "example.csv";
+         int numRows = countRowsInCSV(filename);
 
-        for (int i = 0; i < n; i++)
+        if (numRows >= 0) {
+            printf("The CSV file \"%s\" contains %d rows.\n", filename, numRows);
+        } else {
+            printf("Failed to count the rows in the CSV file.\n");
+        }
+
+
+
+        for (int i = numRows; i < numRows + 1; i++)
         {
             getchar(); // To consume the newline character left by the previous scanf
             printf("Please enter your name: ");
@@ -225,4 +237,22 @@ void showLoading()
     }
 
     printf("                     \n");
+}
+int countRowsInCSV(const char *filename) {
+    FILE *check = fopen(filename, "r");
+    if (check == NULL) {
+        printf("Error opening the file.\n");
+        return -1; // Error indicator
+    }
+
+    int rowCount = 0;
+    char ch;
+    while ((ch = fgetc(check)) != EOF) {
+        if (ch == '\n') {
+            rowCount++;
+        }
+    }
+
+    fclose(check);
+    return rowCount;
 }
