@@ -16,8 +16,8 @@ typedef struct
     char name[50];
     char address[200];
     int age;
-    int phone_no;
-    int account_no;
+    long long int phone_no;
+    long long int account_no;
     char password[15];
     int amount;
 } Account;
@@ -25,13 +25,13 @@ typedef struct
 int registration_driver()
 {
     int count = 0, n=1, age, i, input, check, paisa;
-    long int  mn;
+    long long int mn;
     char names[50], add[200], pass[15];
     int Account_number;
     FILE *file;
 
-    int min = pow(10, 8);
-    int max = pow(10, 9) - 1;
+    long long int min = pow(10, 8);
+    long long int max = pow(10, 9) - 1;
 
     // Print a line with increased font size or different color
     printf("\033[1;33m                                          WELCOMME TO PLUTUS FINCORP\033[0m\n\n");
@@ -93,7 +93,7 @@ start:
             else {printf("Invalid input!\nPlease enter a valid age: "); goto age;}
 
             printf("Enter your Phone number: ");
-            scanf("%ld", &mn);
+            scanf("%lld", &mn);
             account[i].phone_no = mn;
 
             srand(time(NULL));
@@ -119,7 +119,7 @@ start:
 
         for (int i = 0; i <n; i++)
         {
-            fprintf(file, "%s,%s,%d,%ld,%d,%s,%d\n", 
+            fprintf(file, "%s,%s,%d,%lld,%lld,%s,%d\n", 
                     account[i].name,
                     account[i].address,
                     account[i].age,
@@ -147,9 +147,10 @@ start:
             return 1;
         }
 
-        for (int i = 0; i <n; i++)
+        for (int i = numRows; i < numRows + 1; i++)
         {
-            fscanf(file, "%s,%s,%d,%ld,%d,%s,%d\n", account[i].name,
+            fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
+                    account[i].name,
                    account[i].address,
                    &account[i].age,
                    &account[i].phone_no,
@@ -160,22 +161,14 @@ start:
             printf("Name: %s\n", account[i].name);
             printf("Address: %s\n", account[i].address);
             printf("Age: %d\n", account[i].age);
-            printf("Phone Number: %ld\n", account[i].phone_no);
-            printf("Account Number(Login ID): %d\n", account[i].account_no);
+            printf("Phone Number: %lld\n", account[i].phone_no);
+            printf("Account Number(Login ID): %lld\n", account[i].account_no);
             printf("Password : %s\n", account[i].password);
             printf("Current Balance: Rs. %d\n", account[i].amount);
             printf("\n");
             printf("(Please remember the account number and password for future references)\n");
             printf("______________________________________________________________________________________________________\n");
         }
-        printf("Read data: %s, %s, %d, %ld, %d, %s, %d\n", account[i].name,
-       account[i].address,
-       account[i].age,
-       account[i].phone_no,
-       account[i].account_no,
-       account[i].password,
-       account[i].amount);
-
         fclose(file);
         Sleep(3000); goto start;
         break; 
@@ -191,7 +184,8 @@ start:
 
             int log, file_check=0;
             char passw[15]; pass:
-            printf("\nEnter your LOGIN ID(Account number) : "); id:
+            printf("\nEnter your LOGIN ID(Account number) : "); 
+            id:
             scanf("%d", &log);
             fflush(stdin);
             printf("\nEnter your Password (It is case sensitive): "); 
