@@ -84,9 +84,14 @@ start:
             }
             else {printf("Invalid input!\nPlease enter a valid age: "); goto age;}
 
-            printf("Enter your Phone number: ");
+            printf("Enter your Phone number: "); mobo:
             scanf("%lld", &mn);
             account.phone_no = mn;
+            if (mn< 6*pow(10,10) || mn>=pow(10,11))
+            {
+                printf("Invalid moible number! Enter your mobile number again: ");
+                goto mobo;
+            }
 
             srand(time(NULL));
             Account_number = rand() % (max - min + 1) + min;
