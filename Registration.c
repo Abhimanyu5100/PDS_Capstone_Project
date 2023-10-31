@@ -156,13 +156,6 @@ start:
             printf("(Please remember the account number and password for future references)\n");
             printf("______________________________________________________________________________________________________\n");
         }
-        printf("Read data: %s, %s, %d, %ld, %d, %s, %d\n", account[i].name,
-       account[i].address,
-       account[i].age,
-       account[i].phone_no,
-       account[i].account_no,
-       account[i].password,
-       account[i].amount);
 
         fclose(file);
         Sleep(3000); goto start;
