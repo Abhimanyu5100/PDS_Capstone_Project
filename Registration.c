@@ -14,7 +14,7 @@ int registration_driver();
 typedef struct
 {
     char name[50];
-    char address[200];
+    char address[50];
     int age;
     long long int phone_no;
     long long int account_no;
@@ -26,7 +26,7 @@ int registration_driver()
 {
     int count = 0, n=1, age, i, input, check, paisa;
     long long int mn;
-    char names[50], add[200], pass[15];
+    char names[50], add[50], pass[15];
     int Account_number;
     FILE *file;
 
@@ -58,7 +58,7 @@ start:
 
 
 
-        for (int i = n; i < n + 1; i++)
+        for (int i = 0; i < n; i++)
         {
             getchar(); // To consume the newline character left by the previous scanf
             printf("Please enter your name: ");
@@ -66,7 +66,7 @@ start:
             names[strcspn(names, "\n")] = '\0'; // Remove the trailing newline
             strcpy(account.name, names);
 
-            printf("Please enter your address: ");
+            printf("Please enter your city: ");
             fgets(add, sizeof(add), stdin);
             add[strcspn(add, "\n")] = '\0';
             strcpy(account.address, add);
@@ -156,7 +156,7 @@ start:
                    &account.amount);
 
             printf("Name: %s\n", account.name);
-            printf("Address: %s\n", account.address);
+            printf("City: %s\n", account.address);
             printf("Age: %d\n", account.age);
             printf("Phone Number: %lld\n", account.phone_no);
             printf("Account Number(Login ID): %lld\n", account.account_no);
