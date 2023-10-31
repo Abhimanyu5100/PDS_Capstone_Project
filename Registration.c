@@ -169,6 +169,7 @@ start:
             printf("(Please remember the account number and password for future references)\n");
             printf("______________________________________________________________________________________________________\n");
         }
+
         fclose(file);
         Sleep(3000); goto start;
         break; 
