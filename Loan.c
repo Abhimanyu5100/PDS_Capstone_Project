@@ -178,7 +178,7 @@ home_loanB:
 
     interest_home(cibilscore, loan_amount, tenure, income);
     show_wait();
-    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
+    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d%%.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
 redirect:
     printf("What would you like to do?\n1. Accept the loan.\n2. Exit\nYour Choice: ");
     scanf("%d", &response);
@@ -220,7 +220,7 @@ business_loanB:
 
     interest_business(cibilscore, loan_amount, tenure, income);
     show_wait();
-    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
+    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d%%.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
 redirect:
     printf("What would you like to do?\n1. Accept the loan.\n2. Exit\nYour Choice: ");
     scanf("%d", &response);
@@ -262,7 +262,7 @@ student_loanB:
 
     interest_student(cibilscore, loan_amount, tenure, income);
     show_wait();
-    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
+    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d%%.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
 redirect:
     printf("What would you like to do?\n1. Accept the loan.\n2. Exit\nYour Choice: ");
     scanf("%d", &response);
@@ -304,7 +304,7 @@ personal_loanB:
 
     interest_personal(cibilscore, loan_amount, tenure, income);
     show_wait();
-    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
+    printf("\nYou are approved a loan of Rs.%.2f for %d months at an anuual interest rate of %d%%.\nYou will have to pay an EMI of Rs.%.2f.", approved_loan, tenure, interest_rate, EMI);
 redirect:
     printf("What would you like to do?\n1. Accept the loan.\n2. Exit\nYour Choice: ");
     scanf("%d", &response);

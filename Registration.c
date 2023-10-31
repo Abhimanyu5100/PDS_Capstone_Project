@@ -54,7 +54,7 @@ start:
         }
 
         
-        Account account[100];
+        Account account;
 
 
 
@@ -64,18 +64,18 @@ start:
             printf("Please enter your name: ");
             fgets(names, sizeof(names), stdin);
             names[strcspn(names, "\n")] = '\0'; // Remove the trailing newline
-            strcpy(account[i].name, names);
+            strcpy(account.name, names);
 
             printf("Please enter your address: ");
             fgets(add, sizeof(add), stdin);
             add[strcspn(add, "\n")] = '\0';
-            strcpy(account[i].address, add);
+            strcpy(account.address, add);
 
             printf("Please enter your age in years: "); age:
             scanf("%d", &age);
             if (age >=18 && age<=130)
             {
-                account[i].age = age;
+                account.age = age;
             }
             else if (age<18 && age>0)
             {
@@ -86,25 +86,25 @@ start:
 
             printf("Enter your Phone number: ");
             scanf("%lld", &mn);
-            account[i].phone_no = mn;
+            account.phone_no = mn;
 
             srand(time(NULL));
             Account_number = rand() % (max - min + 1) + min;
-            account[i].account_no = Account_number;
+            account.account_no = Account_number;
             fflush(stdin);
             printf("Input a password(Between 6 - 12 characters): ");
             fgets(pass, sizeof(pass), stdin);
             pass[strcspn(pass, "\n")] = '\0';
 
             // Copy at most 14 characters to ensure null-termination
-            strncpy(account[i].password, pass, sizeof(account[i].password) - 1);
-            account[i].password[sizeof(account[i].password) - 1] = '\0';
+            strncpy(account.password, pass, sizeof(account.password) - 1);
+            account.password[sizeof(account.password) - 1] = '\0';
 
             showLoading();
             printf("\nAccount created.\n");
             printf ("Please enter an initial deposit amount in rupess: ");
             scanf("%d", &paisa);
-            account[i].amount = paisa;
+            account.amount = paisa;
 
             printf("\n_______________________________________________________________________________________________________\n");
         }
@@ -112,13 +112,13 @@ start:
         for (int i = 0; i <n; i++)
         {
             fprintf(file, "%s,%s,%d,%lld,%lld,%s,%d\n", 
-                    account[i].name,
-                    account[i].address,
-                    account[i].age,
-                    account[i].phone_no,
-                    account[i].account_no,
-                    account[i].password,
-                    account[i].amount);        
+                    account.name,
+                    account.address,
+                    account.age,
+                    account.phone_no,
+                    account.account_no,
+                    account.password,
+                    account.amount);        
 
             if (ferror(file))
             {
@@ -139,24 +139,24 @@ start:
             return 1;
         }
 
-        for (int i = n; i < n + 1; i++)
+        for (int i = 0; i < n ; i++)
         {
             fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
-                    account[i].name,
-                   account[i].address,
-                   &account[i].age,
-                   &account[i].phone_no,
-                   &account[i].account_no,
-                   account[i].password,
-                   &account[i].amount);
+                    account.name,
+                   account.address,
+                   &account.age,
+                   &account.phone_no,
+                   &account.account_no,
+                   account.password,
+                   &account.amount);
 
-            printf("Name: %s\n", account[i].name);
-            printf("Address: %s\n", account[i].address);
-            printf("Age: %d\n", account[i].age);
-            printf("Phone Number: %lld\n", account[i].phone_no);
-            printf("Account Number(Login ID): %lld\n", account[i].account_no);
-            printf("Password : %s\n", account[i].password);
-            printf("Current Balance: Rs. %d\n", account[i].amount);
+            printf("Name: %s\n", account.name);
+            printf("Address: %s\n", account.address);
+            printf("Age: %d\n", account.age);
+            printf("Phone Number: %lld\n", account.phone_no);
+            printf("Account Number(Login ID): %lld\n", account.account_no);
+            printf("Password : %s\n", account.password);
+            printf("Current Balance: Rs. %d\n", account.amount);
             printf("\n");
             printf("(Please remember the account number and password for future references)\n");
             printf("______________________________________________________________________________________________________\n");
@@ -188,8 +188,8 @@ start:
             file = fopen("file.csv", "r");
             for (int i = 0; i < 50; i++)
             {
-                fscanf(file, "%d,%s\n", &account[i].account_no, account[i].password);
-                if (account[i].account_no == log && (strcmp(account[i].password, passw) == 0))
+                fscanf(file, "%d,%s\n", &account.account_no, account.password);
+                if (account.account_no == log && (strcmp(account.password, passw) == 0))
                 {
                     file_check++;
                     printf("\nYou have succesfully logged into your account.");
@@ -202,6 +202,8 @@ start:
                     printf("\nYou have entered wrong login details.\n\n ");
                     goto pass;
                 }
+
+            fclose(file);
 
                 }
            
