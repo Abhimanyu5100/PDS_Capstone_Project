@@ -16,12 +16,15 @@ int main()
    switch(user_input)
    {
     case 1:
+    //Check Balance
     break;
 
     case 2:
+    //Deposit Money
     break;
 
     case 3:
+    //Withdraw
     break;
 
     case 4:
