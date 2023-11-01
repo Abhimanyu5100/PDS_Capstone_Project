@@ -80,7 +80,7 @@ start:
             else if (age<18 && age>0)
             {
                 printf("You are under 18 years of age and are not eligible to get a bank account[i].");
-                goto end;
+                return 0;
             }
             else {printf("Invalid input!\nPlease enter a valid age: "); goto age;}
 
@@ -186,7 +186,7 @@ start:
         
 
     case 2:
-
+    int ask;
             showLoading();
 
             system("cls");
@@ -217,8 +217,22 @@ start:
 
                  if(file_check == 0)
                 {
-                    printf("\nYou have entered wrong login details.\n\n ");
-                    goto pass;
+                    printf("\nYou have entered wrong login details.\nDo you want to exit?\n1. Yes\n2. No\nYour choice: "); choice:
+                    scanf("%d", &ask);
+                    switch (ask)
+                    {
+                        case 1:
+                        return 0;
+                        break;
+
+                        case 2:
+                        goto pass;
+                        break;
+
+                        default:
+                        printf("Enter a valid choice: ");
+                        goto choice;
+                    }
                 }
 
             fclose(file);
@@ -227,7 +241,7 @@ start:
            
 
     end:
-    return 0;
+    return 1;
 }
 
 void showLoading()
