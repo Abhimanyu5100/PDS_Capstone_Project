@@ -24,7 +24,7 @@ typedef struct
 
 int registration_driver()
 {
-    int count = 0, n=1, age, i, input, check, paisa, rows, ask;
+    int count = 0, n=1, age, i, input, check, paisa, rows, ask, entry, k, uid, dep, with;
     long long int mn;
     char names[50], add[50], pass[15], ch;
     int Account_number;
@@ -146,7 +146,7 @@ start:
 
         for (int i = 0; i < n ; i++)
         {
-            fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
+            fscanf(file, "%[^,],%[^,],%d,%lld,%lld,%s,%d\n",
                     account[i].name,
                    account[i].address,
                    &account[i].age,
@@ -235,6 +235,47 @@ start:
                     }
                 }
 
+                if (check != 0)
+            {
+                printf ("Press 1 To check the balance in the account"
+                        "\nEnter 2 to deposit money"
+                        " \nEnter 3 to Withddraw money" 
+                        "\nEnter 4 to exit bank"  
+                        "Input your choice here : ");
+                scanf("%d",&entry);
+
+                switch (entry)
+                {
+                    case 1 :
+                        printf("The balace in your account is : ");
+                        printf ("%d",account[k].amount);
+                        return uid;
+
+                    case 2 : 
+                        printf ("Enter the amount to deposit : ");
+                        scanf ("%d",&dep); 
+                        
+                        account[k].amount += dep;
+                        printf("The balace in your account is : ");
+                        printf ("%d",account[k].amount);
+                        return uid;
+                        
+
+                    case 3 : 
+                        printf ("Enter the amount to withdraw : ");
+                        scanf ("%d",&with);
+                        if (with > account[k].amount)
+                        printf ("You don't have enough balance in your account.");
+                        else 
+                        {
+                            account[k].amount -= with;
+                            printf("The balace in your account is : ");
+                            printf ("%d",account[k].amount);
+                            return uid;
+                        }
+
+                }
+
             fclose(file);
 
                 }
@@ -245,6 +286,7 @@ start:
 }
 
 void showLoading()
+
 {
     const char chars[] = {'|', '/', '-', '\\'};
     const int numChars = sizeof(chars) / sizeof(chars[0]);

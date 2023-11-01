@@ -7,6 +7,7 @@
 int main()
 {
     int user_input;
+    registration_driver();
    
    start:
    printf("\nWhat would you like to do?\n");
