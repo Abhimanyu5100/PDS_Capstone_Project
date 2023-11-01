@@ -7,9 +7,7 @@
 int main()
 {
     int user_input;
-   registration_driver();
-   if (registration_driver == 0)
-   goto the_end;
+   
    start:
    printf("\nWhat would you like to do?\n");
    printf("1. Check Balance\n2. Deposit\n3. Withdraw\n4. Create an FD\n5. Apply for Loan\n6. Apply for Insurance\n7. Exit\n");
@@ -41,6 +39,7 @@ int main()
 
     case 6:
     insurance_driver();
+    goto start;
     break;
 
     case 7:

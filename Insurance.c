@@ -260,7 +260,8 @@ start:
         scanf("%d", &age);
         if (age >= 0 && age < 18)
         {
-            printf("\nyou cannot apply for insurance");
+            printf("\nYou cannot apply for insurance.");
+            return 0;
             break;
         }
         else if (age >= 18)

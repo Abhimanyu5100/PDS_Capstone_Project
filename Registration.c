@@ -24,7 +24,7 @@ typedef struct
 
 int registration_driver()
 {
-    int count = 0, n=1, age, i, input, check, paisa, rows;
+    int count = 0, n=1, age, i, input, check, paisa, rows, ask;
     long long int mn;
     char names[50], add[50], pass[15], ch;
     int Account_number;
@@ -186,7 +186,7 @@ start:
         
 
     case 2:
-    int ask;
+    
             showLoading();
 
             system("cls");
