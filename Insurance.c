@@ -42,24 +42,7 @@ int insurance_driver()
 
 int insurance()
 {
-    FILE *csvfile1 = fopen("life_insurance.csv", "a");
-    if (csvfile1 == NULL)
-    {
-        printf("Error opening file for writing.\n");
-        return 1;
-    }
-    FILE *csvfile2 = fopen("health_insurance.csv", "a");
-    if (csvfile2 == NULL)
-    {
-        printf("Error opening file for writing.\n");
-        return 1;
-    }
-    FILE *csvfile3 = fopen("car_insurance.csv", "a");
-    if (csvfile3 == NULL)
-    {
-        printf("Error opening file for writing.\n");
-        return 1;
-    }
+    
 
     int value, value_car, cover_value, n, a, d, c, z, k,b, age_car, ag, year, p, acc_num, premium0, cover, age, cover_amnt, cover_amn, alco;
     float premium;
@@ -193,7 +176,7 @@ start:
             premium0 = 920;
             printf("\nThe premium you have to pay is Rs 920 per month");
         select4:
-            printf("\nEnter 1 to continue and 0 to exit");
+            printf("\nEnter 1 to continue and 0 to exit: ");
             scanf("%d", &p);
             if (p == 0)
             {
@@ -231,8 +214,7 @@ start:
         }
 
        
-        fprintf(csvfile1, "\n%s,%s,%d,%010d,%d",ph,benefi,cover_value,b,premium0);
-        fclose(csvfile1);
+       
        
 
         break;
@@ -267,7 +249,7 @@ start:
         else if (age >= 18)
         {
         alcohol:
-            printf("\nEnter 1 if you smoke or consume alcohol else enter 0 \n Your choice: ");
+            printf("\nEnter 1 if you smoke or consume alcohol else enter 0 \nYour choice: ");
             scanf("%d", &alco);
             if (alco != 1 && alco != 0)
             {
@@ -872,7 +854,7 @@ start:
                 printf("\ninvalid input , Enter amount from above list  ");
                 goto health;
             }
-            fprintf(csvfile2, "\n%s,%d,%d,%010d,%d",benefi,age,cover_amn,b,d);
+            
 
             break;
         }
@@ -983,9 +965,7 @@ start:
             goto age1;
         }
         
-        fprintf(csvfile1, "\n%s,%d,%d,%d,%010d,%d",benefi,ag,value_car,age_car,b,premium);
-        
-        fclose(csvfile3);
+       
 
         break;
 
