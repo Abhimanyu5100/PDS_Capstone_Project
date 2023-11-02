@@ -89,7 +89,7 @@ void loading_screen()
     int i;
     int n = 3; // Number of iterations or steps in your task
 
-    printf("loading ");
+    printf("\x1b[1mloading ");
 
     for (i = 0; i < n; i++)
     {
@@ -280,7 +280,7 @@ SeniorCitizen:
             break;
 
         default:
-            printf("\nInvalid choice for withdrawal option. Please enter 0 to 3.\n");
+            printf("\nInvalid choice for withdrawal option. Please enter 0 to 3.\x1b[0m\n");
             break;
         }
     }
