@@ -26,8 +26,10 @@ int loan_driver()
 {
     int input;
 
+    printf("\x1b[1;33mWELCOME TO THE LOAN SECTION\x1b[0m");
+
 start:
-    printf("Please enter your CIBIL score: ");
+    printf("\x1b[1;37m\nPlease enter your CIBIL score: ");
     scanf("%d", &cibilscore);
     loan_amount_tracker(cibilscore);
     show_loading();
@@ -592,7 +594,7 @@ void show_wait()
     printf("\r");
     for (int j = 0; j < 20; j++)
     { // Adjust the number of spaces as needed
-        printf(" ");
+        printf(" \x1b[0m");
     }
     printf("\n");
 

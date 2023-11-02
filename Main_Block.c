@@ -8,11 +8,13 @@ int main()
 {
     int user_input;
     registration_driver();
-   
+    if (registration_driver ==1)
+    {goto the_end;
+}
    start:
-   printf("\nWhat would you like to do?\n");
+   printf("\x1b[1;36m\n\nWhat would you like to do?\n");
    printf("1. Check Balance\n2. Deposit\n3. Withdraw\n4. Create an FD\n5. Apply for Loan\n6. Apply for Insurance\n7. Exit\n");
-   printf("Your choice: "); re_enter:
+   printf("\x1b[1;34mYour choice: \x1b[0m"); re_enter:
    scanf("%d", &user_input);
 
    switch(user_input)
@@ -48,10 +50,12 @@ int main()
     break;
 
     default:
-    printf("Invalid input!\nEnter a valid choice: ");
+    printf("\x1b[1;31mInvalid input!\n\x1b[1;36mEnter a valid choice:\x1b[0m ");
     goto re_enter;
    }
 the_end:
-printf("\nDo visit us again..");
+printf("\n\x1b[1;33mDo visit us again..\x1b[0m");
     return 0;
 }
+
+
