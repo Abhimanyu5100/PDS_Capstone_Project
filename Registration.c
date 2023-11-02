@@ -179,6 +179,7 @@ start:
             rows++;
         }
     }
+    printf("%d\n",rows);
 
         fclose(file);
         Sleep(3000); goto start;
