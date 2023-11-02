@@ -210,7 +210,8 @@ start:
         passw[strcspn(passw, "\n")] = '\0';
 
         file = fopen("file.csv", "r");
-        for (int i = 0; i < rows; i++)
+        int i = 0;
+        while (fscanf(file, "%lld,%s", &account[i].account_no, account[i].password) != EOF)
         {
             fscanf(file, "%lld,%s\n", &account[i].account_no, account[i].password);
             if (account[i].account_no == log && (strcmp(account[i].password, passw) == 0))
@@ -274,6 +275,7 @@ start:
 
                 break;
             }
+            i++;
         }
 
         if (file_check == 0)
