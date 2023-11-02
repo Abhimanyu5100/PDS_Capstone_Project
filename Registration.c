@@ -24,7 +24,7 @@ typedef struct
 
 int registration_driver()
 {
-    int count = 0, n=1, age, i, input, check, paisa, rows, ask, entry, k, uid, dep, with;
+    int count = 0, n=1, age, i, input, check, paisa, rows, ask;
     long long int mn;
     char names[50], add[50], pass[15], ch;
     int Account_number;
@@ -34,7 +34,7 @@ int registration_driver()
     long long int max = pow(10, 9) - 1;
 
     // Print a line with increased font size or different color
-    printf("\033[1;33m                                          WELCOMME TO PLUTUS FINCORP\033[0m\n\n");
+    printf("\033[1;33m                                          WELCOME TO PLUTUS FINCORP\033[0m\n\n");
 start:
     printf("What would you like to do?\n1. Register new account[i].\n2. Login into an existing account[i].\n");
 
@@ -146,7 +146,7 @@ start:
 
         for (int i = 0; i < n ; i++)
         {
-            fscanf(file, "%[^,],%[^,],%d,%lld,%lld,%s,%d\n",
+            fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
                     account[i].name,
                    account[i].address,
                    &account[i].age,
@@ -193,11 +193,12 @@ start:
 
             printf("Welcome to the login page.");
 
-            int log, file_check=0;
+            int file_check=0;
+            long long int log;
             char passw[15]; pass:
             printf("\nEnter your LOGIN ID(Account number) : "); 
             id:
-            scanf("%d", &log);
+            scanf("%lld", &log);
             fflush(stdin);
             printf("\nEnter your Password (It is case sensitive): "); 
             fgets(passw, sizeof(passw), stdin);
@@ -235,47 +236,6 @@ start:
                     }
                 }
 
-                if (check != 0)
-            {
-                printf ("Press 1 To check the balance in the account"
-                        "\nEnter 2 to deposit money"
-                        " \nEnter 3 to Withddraw money" 
-                        "\nEnter 4 to exit bank"  
-                        "Input your choice here : ");
-                scanf("%d",&entry);
-
-                switch (entry)
-                {
-                    case 1 :
-                        printf("The balace in your account is : ");
-                        printf ("%d",account[k].amount);
-                        return uid;
-
-                    case 2 : 
-                        printf ("Enter the amount to deposit : ");
-                        scanf ("%d",&dep); 
-                        
-                        account[k].amount += dep;
-                        printf("The balace in your account is : ");
-                        printf ("%d",account[k].amount);
-                        return uid;
-                        
-
-                    case 3 : 
-                        printf ("Enter the amount to withdraw : ");
-                        scanf ("%d",&with);
-                        if (with > account[k].amount)
-                        printf ("You don't have enough balance in your account.");
-                        else 
-                        {
-                            account[k].amount -= with;
-                            printf("The balace in your account is : ");
-                            printf ("%d",account[k].amount);
-                            return uid;
-                        }
-
-                }
-
             fclose(file);
 
                 }
@@ -286,7 +246,6 @@ start:
 }
 
 void showLoading()
-
 {
     const char chars[] = {'|', '/', '-', '\\'};
     const int numChars = sizeof(chars) / sizeof(chars[0]);
