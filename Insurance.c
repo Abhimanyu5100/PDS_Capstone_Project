@@ -42,9 +42,8 @@ int insurance_driver()
 
 int insurance()
 {
-    
 
-    int value, value_car, cover_value, n, a, d, c, z, k,b, age_car, ag, year, p, acc_num, premium0, cover, age, cover_amnt, cover_amn, alco;
+    int value, value_car, cover_value, n, a, d, c, z, k, b, age_car, ag, year, p, acc_num, premium0, cover, age, cover_amnt, cover_amn, alco;
     float premium;
     char ph[100], benefi[100];
     srand(time(NULL));
@@ -56,7 +55,7 @@ start:
     printf("\nEnter your choice : ");
     scanf("%d", &n);
     getchar();
-    b=policyNum();
+    b = policyNum();
 
     switch (n)
     {
@@ -213,13 +212,9 @@ start:
             goto cover;
         }
 
-       
-       
-       
-
         break;
     case 2:
-    b=policyNum();
+        b = policyNum();
         printf("\nYou have selected health insurance");
         printf("\n");
     benefi1:
@@ -438,7 +433,7 @@ start:
                             puts(benefi);
                             printf("\nAge of person :%d ", age);
                             printf("\n\nThe plan that you have selected is %d", cover_amn);
-                            printf("\n\nyour policy number for insurance is %010d",b);
+                            printf("\n\nyour policy number for insurance is %010d", b);
                             printf("\n\nThe premium for selected coverage is rs 880 per month for next 5 years");
                             printf("\n\nThank you for taking the insurance");
                         }
@@ -473,7 +468,7 @@ start:
                             puts(benefi);
                             printf("\nAge of person :%d ", age);
                             printf("\n\nThe plan that you have selected is %d", cover_amn);
-                            printf("\n\nyour policy number for insurance is %010d",b);
+                            printf("\n\nyour policy number for insurance is %010d", b);
                             printf("\n\nThe premium for selected coverage is rs 740 per month for next 5 years");
                             printf("\n\nThank you for taking the insurance");
                         }
@@ -544,7 +539,7 @@ start:
                             puts(benefi);
                             printf("\nAge of person :%d ", age);
                             printf("\n\nThe plan that you have selected is %d", cover_amn);
-                            printf("\n\nyour policy number for insurance is %010d",b);
+                            printf("\n\nyour policy number for insurance is %010d", b);
                             printf("\n\nThe premium for selected coverage is rs 570 per month for next 5 years");
                             printf("\n\nThank you for taking the insurance");
                         }
@@ -690,7 +685,7 @@ start:
                             puts(benefi);
                             printf("\nAge of person :%d ", age);
                             printf("\n\nThe plan that you have selected is %d", cover_amn);
-                            printf("\n\nyour policy number for insurance is %010d",b);
+                            printf("\n\nyour policy number for insurance is %010d", b);
                             printf("\n\nThe premium for selected coverage is rs 570 per month for next 5 years");
                             printf("\n\nThank you for taking the insurance");
                         }
@@ -765,7 +760,7 @@ start:
                             puts(benefi);
                             printf("\nAge of person :%d ", age);
                             printf("\n\nThe plan that you have selected is %d", cover_amn);
-                            printf("\n\nyour policy number for insurance is %010d",b);
+                            printf("\n\nyour policy number for insurance is %010d", b);
                             printf("\n\nThe premium for selected coverage is rs 940 per month for next 5 years");
                             printf("\n\nThank you for taking the insurance");
                         }
@@ -836,7 +831,7 @@ start:
                             puts(benefi);
                             printf("\nAge of person :%d ", age);
                             printf("\n\nThe plan that you have selected is %d", cover_amn);
-                            printf("\n\nyour policy number for insurance is %010d",b);
+                            printf("\n\nyour policy number for insurance is %010d", b);
                             printf("\n\nThe premium for selected coverage is rs 770 per month for next 5 years");
                             printf("\n\nThank you for taking the insurance");
                         }
@@ -854,13 +849,12 @@ start:
                 printf("\ninvalid input , Enter amount from above list  ");
                 goto health;
             }
-            
 
             break;
         }
 
     case 3:
-        b=policyNum();
+        b = policyNum();
         printf("\nYou have  selected auto insurance");
         printf("\n\nEnter your name: ");
         gets(benefi);
@@ -915,7 +909,7 @@ start:
                     printf("\n\nName of policy holder: ");
                     puts(benefi);
                     printf("\nAge of owner is %d", ag);
-                    printf("\n\nyour policy number for insurance is %010d",b);
+                    printf("\n\nyour policy number for insurance is %010d", b);
                     printf("\n\nValue of car is Rs %d", value_car);
                     printf("\n\nAge of car is %d years", age_car);
                     printf("\n\nThank you ");
@@ -964,8 +958,6 @@ start:
             printf("\ninvalid input");
             goto age1;
         }
-        
-       
 
         break;
 

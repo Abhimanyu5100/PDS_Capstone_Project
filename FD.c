@@ -114,8 +114,7 @@ void FD()
     float amount, maturityAmount, interestRate, interest, maturityAmount1;
     char name[100];
     int withdrawalDuration;
-    
-    
+
 name:
     printf("\nEnter the Account holder name: ");
     fgets(name, sizeof(name), stdin); // Input of Account holder name
@@ -284,7 +283,6 @@ SeniorCitizen:
             break;
         }
     }
-    
 }
 int fd_driver();
 int fd_driver()

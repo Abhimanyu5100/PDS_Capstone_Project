@@ -147,10 +147,10 @@ start:
 
         for (i = 0; i < n; i++)
         {
-            fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
-                   account[i].name,
-                   account[i].address,
+            fscanf(file, "%d,%s,%s,%lld,%lld,%s,%d\n",
                    &account[i].age,
+                   account[i].name,
+                   account[i].address,                   
                    &account[i].phone_no,
                    &account[i].account_no,
                    account[i].password,
@@ -218,7 +218,8 @@ start:
             {
                 file_check++;
                 printf("\n\x1b[1;32mYou have succesfully logged into your account.\x1b[0m\n");
-                int user_inp; go_back:
+                int user_inp;
+            go_back:
                 printf("\x1b[1;36m\n\nWhat would you like to do?\n");
                 printf("1. Check Balance\n2. Deposit\n3. Withdraw\n4. Explore more options\n5. Exit");
                 printf("\n\x1b[1;34mYour choice: \x1b[0m");
@@ -228,49 +229,48 @@ start:
                 switch (user_inp)
                 {
                     int dep, with;
-                    case 1 :
-                        printf("\x1b[1;36mThe balace in your account is:\x1b[0m ");
-                        printf ("%d",account[i].amount);
-                        goto go_back;
-                        
-
-                    case 2 : 
-                        printf ("\x1b[1;36mEnter the amount to deposit:\x1b[0m ");
-                        scanf ("%d",&dep); 
-                        
-                        account[i].amount += dep;
-                        printf("\x1b[1;36mThe balace in your account after deposition is:\x1b[0m ");
-                        printf ("%d",account[i].amount);
-                        goto go_back;
-                        
-                        
-
-                    case 3 : 
+                case 1:
                     printf("\x1b[1;36mThe balace in your account is:\x1b[0m ");
-                    printf ("%d",account[i].amount);
-                    withdraw:
-                        printf ("\x1b[1;36mEnter the amount to withdraw:\x1b[0m ");
-                        scanf ("%d",&with);
-                        if (with > account[i].amount)
-                        {printf ("\x1b[1;36mYou don't have enough balance in your account.\x1b[0m");goto withdraw;}
-                        else 
-                        {
-                            account[i].amount -= with;
-                            printf("\x1b[1;36mThe balace after withdrawal in your account is: \x1b[0m");
-                            printf ("%d",account[i].amount);
-                            goto go_back;
-                        }
+                    printf("%d", account[i].amount);
+                    goto go_back;
 
-                        case 4:
-                        return 0;
+                case 2:
+                    printf("\x1b[1;36mEnter the amount to deposit:\x1b[0m ");
+                    scanf("%d", &dep);
 
-                        case 5:
-                        return 1;
+                    account[i].amount += dep;
+                    printf("\x1b[1;36mThe balace in your account after deposition is:\x1b[0m ");
+                    printf("%d", account[i].amount);
+                    goto go_back;
 
-                        default:
-                        printf("Invalid input!\n");
+                case 3:
+                    printf("\x1b[1;36mThe balace in your account is:\x1b[0m ");
+                    printf("%d", account[i].amount);
+                withdraw:
+                    printf("\x1b[1;36mEnter the amount to withdraw:\x1b[0m ");
+                    scanf("%d", &with);
+                    if (with > account[i].amount)
+                    {
+                        printf("\x1b[1;36mYou don't have enough balance in your account.\x1b[0m");
+                        goto withdraw;
+                    }
+                    else
+                    {
+                        account[i].amount -= with;
+                        printf("\x1b[1;36mThe balace after withdrawal in your account is: \x1b[0m");
+                        printf("%d", account[i].amount);
                         goto go_back;
+                    }
 
+                case 4:
+                    return 0;
+
+                case 5:
+                    return 1;
+
+                default:
+                    printf("Invalid input!\n");
+                    goto go_back;
                 }
 
                 break;
@@ -331,4 +331,3 @@ void showLoading()
 
     printf("                     \n");
 }
-
