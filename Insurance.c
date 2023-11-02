@@ -17,7 +17,7 @@ void show_load()
     int i;
     int n = 3; // Number of iterations or steps in your task
 
-    printf("Processing ");
+    printf("\x1b[1mProcessing ");
 
     for (i = 0; i < n; i++)
     {
@@ -661,7 +661,7 @@ start:
                         if (k == 0)
                         {
                             show_load();
-                            printf("\nYour application has been cancelled");
+                            printf("\nYour application has been cancelled.");
 
                             break;
                         }
@@ -990,7 +990,7 @@ start:
         break;
 
     default:
-        printf("invalid input");
+        printf("invalid input\x1b[0m");
         goto start;
     }
     return 0;
