@@ -144,7 +144,7 @@ start:
             return 1;
         }
 
-        for (int i = 0; i < n ; i++)
+        for (i = 0; i < n ; i++)
         {
             fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
                     account[i].name,
