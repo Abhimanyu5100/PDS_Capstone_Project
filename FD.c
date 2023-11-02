@@ -114,15 +114,23 @@ void FD()
     float amount, maturityAmount, interestRate, interest, maturityAmount1;
     char name[100];
     int withdrawalDuration;
-    // file handling
-    FILE *file = fopen("account_data.txt", "a"); // "a" opens the file in append mode
-    if (file == NULL)
-    {
-        printf("Error opening file for writing.\n");
-    }
-
+    
+    
+name:
     printf("\nEnter the Account holder name: ");
     fgets(name, sizeof(name), stdin); // Input of Account holder name
+    for (int o = 0; o < strlen(name); o++)
+    {
+        if (name[o] >= 'a' && name[o] <= 'z' || name[o] >= 'A' && name[o] <= 'Z')
+        {
+            continue;
+        }
+        else
+        {
+            printf("Enter a valid name");
+            goto name;
+        }
+    }
     printf("Enter your Account number from which you want to deposit amount for FD : ");
     scanf("%0200d", &AccountNo); // Input of Account Number
 
@@ -162,7 +170,7 @@ SeniorCitizen:
         goto SeniorCitizen;
     }
     printf("-----------------------------------------------------------------------------------------------------------\n");
- loading_screen();
+    loading_screen();
     // Showing percentage return (after maturity) to Account holder
     printf("\nExpected percentage return are as follows : ");
     if (isSeniorCitizen)
@@ -210,7 +218,7 @@ SeniorCitizen:
         else if (withdrawalOption == 3)
         {
             printf("-------------------------------------------------------------------------\n");
-         loading_screen();
+            loading_screen();
             printf("\nYour FD account has been created and your details are follows : ");
 
             printf("\n\nAccount Holder name - %s", name);
@@ -230,7 +238,7 @@ SeniorCitizen:
         case 1:
             printf("-------------------------------------------------------------------------\n");
 
-         loading_screen();
+            loading_screen();
             interestRate = CalculateInterestRate(duration, isSeniorCitizen);
             interest = amount * duration * interestRate / 1200.0;
             maturityAmount = amount + interest;
@@ -239,7 +247,7 @@ SeniorCitizen:
 
         case 2:
             printf("-------------------------------------------------------------------------\n");
-         loading_screen();
+            loading_screen();
             printf("\n\nBefore maturity period the expected percentage return are as follows : ");
             if (isSeniorCitizen)
             {
@@ -276,17 +284,7 @@ SeniorCitizen:
             break;
         }
     }
-    // Write account details to the file
-    fprintf(file, "\nAccount Holder name - %s", name);
-    fprintf(file, "New FD account - %010d\n", accountNumber);
-    fprintf(file, "Total Principle Ammount - Rs %.2f\n", amount1);
-    fprintf(file, "Duration - %d months\n", duration);
-    fprintf(file, "Interest Rate - %.2f\n", interestRate);
-    fprintf(file, "Expectation return after maturity period - Rs %.2f\n", maturityAmount1);
-    fprintf(file, "-------------------------------------------------------------------------------------------\n");
-
-    // Close the file
-    fclose(file);
+    
 }
 int fd_driver();
 int fd_driver()

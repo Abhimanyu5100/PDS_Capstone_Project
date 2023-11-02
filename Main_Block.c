@@ -7,7 +7,7 @@
 int main()
 {
     int user_input, user;
-    user = registration_driver();
+    registration_driver();
     if (user == 1)
     {goto the_end;
 }
