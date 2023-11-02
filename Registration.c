@@ -9,8 +9,6 @@
 void showLoading();
 int registration_driver();
 
-
-
 typedef struct
 {
     char name[50];
@@ -24,7 +22,7 @@ typedef struct
 
 int registration_driver()
 {
-    int count = 0, n=1, age, i, input, check, paisa, rows, ask;
+    int count = 0, n = 1, age, i, input, check, paisa, rows, ask;
     long long int mn;
     char names[50], add[50], pass[15], ch;
     int Account_number;
@@ -53,10 +51,7 @@ start:
             return 1;
         }
 
-        
         Account account[100];
-
-
 
         for (int i = 0; i < n; i++)
         {
@@ -71,23 +66,29 @@ start:
             add[strcspn(add, "\n")] = '\0';
             strcpy(account[i].address, add);
 
-            printf("\x1b[1;36mPlease enter your age in years:\x1b[0m "); age:
+            printf("\x1b[1;36mPlease enter your age in years:\x1b[0m ");
+        age:
             scanf("%d", &age);
-            if (age >=18 && age<=130)
+            if (age >= 18 && age <= 130)
             {
                 account[i].age = age;
             }
-            else if (age<18 && age>0)
+            else if (age < 18 && age > 0)
             {
                 printf("\n\x1b[1;31mYou are under 18 years of age and are not eligible to get a bank account.\x1b[0m");
                 return 1;
             }
-            else {printf("\x1b[1;31mInvalid input!\n\x1b[1;36mPlease enter a valid age:\x1b[0m "); goto age;}
+            else
+            {
+                printf("\x1b[1;31mInvalid input!\n\x1b[1;36mPlease enter a valid age:\x1b[0m ");
+                goto age;
+            }
 
-            printf("\x1b[1;36mEnter your Phone number:\x1b[0m "); mobo:
+            printf("\x1b[1;36mEnter your Phone number:\x1b[0m ");
+        mobo:
             scanf("%lld", &mn);
             account[i].phone_no = mn;
-            if (mn< 6*pow(10,9) || mn>=pow(10,10))
+            if (mn < 6 * pow(10, 9) || mn >= pow(10, 10))
             {
                 printf("\x1b[1;31mInvalid moible number!\x1b[1;36m \nEnter your mobile number again: ");
                 goto mobo;
@@ -107,23 +108,23 @@ start:
 
             showLoading();
             printf("\n\x1b[1;32mAccount created.\x1b[0m\n\n");
-            printf ("\x1b[1;36mPlease enter an initial deposit amount in rupess:\x1b[0m ");
+            printf("\x1b[1;36mPlease enter an initial deposit amount in rupess:\x1b[0m ");
             scanf("%d", &paisa);
             account[i].amount = paisa;
 
             printf("\n\x1b[1;32m_______________________________________________________________________________________________________\x1b[0m\n");
         }
 
-        for (int i = 0; i <n; i++)
+        for (int i = 0; i < n; i++)
         {
-            fprintf(file, "%s,%s,%d,%lld,%lld,%s,%d\n", 
+            fprintf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
                     account[i].name,
                     account[i].address,
                     account[i].age,
                     account[i].phone_no,
                     account[i].account_no,
                     account[i].password,
-                    account[i].amount);        
+                    account[i].amount);
 
             if (ferror(file))
             {
@@ -144,10 +145,10 @@ start:
             return 1;
         }
 
-        for (i = 0; i < n ; i++)
+        for (i = 0; i < n; i++)
         {
             fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
-                    account[i].name,
+                   account[i].name,
                    account[i].address,
                    &account[i].age,
                    &account[i].phone_no,
@@ -167,92 +168,149 @@ start:
             printf("\x1b[1;32m______________________________________________________________________________________________________\x1b[0m\n");
         }
 
-        if (file == NULL) {
-        printf("\x1b[1;31mCould not open file %s\x1b[0m\n", file);
-        return 1; // Exit with an error
-    }
-
-    // Read the file character by character
-    while ((ch = fgetc(file)) != EOF) {
-        // Count newline characters to determine rows
-        if (ch == '\n') {
-            rows++;
+        if (file == NULL)
+        {
+            printf("\x1b[1;31mCould not open file %s\x1b[0m\n", file);
+            return 1; // Exit with an error
         }
-    }
+
+        // Read the file character by character
+        while ((ch = fgetc(file)) != EOF)
+        {
+            // Count newline characters to determine rows
+            if (ch == '\n')
+            {
+                rows++;
+            }
+        }
 
         fclose(file);
-        Sleep(3000); goto start;
-        break; 
-        
+        Sleep(3000);
+        goto start;
+        break;
 
     case 2:
-    
-            showLoading();
 
-            system("cls");
+        showLoading();
 
-            printf("\n\x1b[1;33mWelcome to the login page.\n");
+        system("cls");
 
-            int file_check=0;
-            long long int log;
-            char passw[15]; pass:
-            printf("\n\x1b[1;36mEnter your LOGIN ID(Account number) :\x1b[0m "); 
-            id:
-            scanf("%lld", &log);
-            fflush(stdin);
-            printf("\n\x1b[1;36mEnter your Password \x1b[1;34m(It is case sensitive): \x1b[0m"); 
-            fgets(passw, sizeof(passw), stdin);
-            passw[strcspn(passw, "\n")] = '\0';
+        printf("\n\x1b[1;33mWelcome to the login page.\n");
 
-            file = fopen("file.csv", "r");
-            for (int i = 0; i < rows; i++)
+        int file_check = 0;
+        long long int log;
+        char passw[15];
+    pass:
+        printf("\n\x1b[1;36mEnter your LOGIN ID(Account number) :\x1b[0m ");
+    id:
+        scanf("%lld", &log);
+        fflush(stdin);
+        printf("\n\x1b[1;36mEnter your Password \x1b[1;34m(It is case sensitive): \x1b[0m");
+        fgets(passw, sizeof(passw), stdin);
+        passw[strcspn(passw, "\n")] = '\0';
+
+        file = fopen("file.csv", "r");
+        for (int i = 0; i < rows; i++)
+        {
+            fscanf(file, "%lld,%s\n", &account[i].account_no, account[i].password);
+            if (account[i].account_no == log && (strcmp(account[i].password, passw) == 0))
             {
-                fscanf(file, "%lld,%s\n", &account[i].account_no, account[i].password);
-                if (account[i].account_no == log && (strcmp(account[i].password, passw) == 0))
-                {
-                    file_check++;
-                    printf("\n\x1b[1;32mYou have succesfully logged into your account.\x1b[0m\n");
-                    break;
-                }
-            }
+                file_check++;
+                printf("\n\x1b[1;32mYou have succesfully logged into your account.\x1b[0m\n");
+                int user_inp; go_back:
+                printf("\x1b[1;36m\n\nWhat would you like to do?\n");
+                printf("1. Check Balance\n2. Deposit\n3. Withdraw\n4. Explore more options\n5. Exit");
+                printf("\n\x1b[1;34mYour choice: \x1b[0m");
+            re_enter:
+                scanf("%d", &user_inp);
 
-                 if(file_check == 0)
+                switch (user_inp)
                 {
-                    printf("\n\x1b[1;31mYou have entered wrong login details.\n\x1b[1;36mDo you want to exit?\n1. Yes\n2. No\n\x1b[1;34mYour choice:\x1b[0m "); choice:
-                    scanf("%d", &ask);
-                    switch (ask)
-                    {
-                        case 1:
+                    int dep, with;
+                    case 1 :
+                        printf("\x1b[1;36mThe balace in your account is:\x1b[0m ");
+                        printf ("%d",account[i].amount);
+                        goto go_back;
+                        
+
+                    case 2 : 
+                        printf ("\x1b[1;36mEnter the amount to deposit:\x1b[0m ");
+                        scanf ("%d",&dep); 
+                        
+                        account[i].amount += dep;
+                        printf("\x1b[1;36mThe balace in your account after deposition is:\x1b[0m ");
+                        printf ("%d",account[i].amount);
+                        goto go_back;
+                        
+                        
+
+                    case 3 : 
+                    printf("\x1b[1;36mThe balace in your account is:\x1b[0m ");
+                    printf ("%d",account[i].amount);
+                    withdraw:
+                        printf ("\x1b[1;36mEnter the amount to withdraw:\x1b[0m ");
+                        scanf ("%d",&with);
+                        if (with > account[i].amount)
+                        {printf ("\x1b[1;36mYou don't have enough balance in your account.\x1b[0m");goto withdraw;}
+                        else 
+                        {
+                            account[i].amount -= with;
+                            printf("\x1b[1;36mThe balace after withdrawal in your account is: \x1b[0m");
+                            printf ("%d",account[i].amount);
+                            goto go_back;
+                        }
+
+                        case 4:
+                        return 0;
+
+                        case 5:
                         return 1;
-                        break;
-
-                        case 2:
-                        goto pass;
-                        break;
 
                         default:
-                        printf("\x1b[1;36mEnter a valid choice:\x1b[0m ");
-                        goto choice;
-                    }
+                        printf("Invalid input!\n");
+                        goto go_back;
+
                 }
 
-            fclose(file);
-            break;
+                break;
+            }
+        }
 
-            case 3:
-            
+        if (file_check == 0)
+        {
+            printf("\n\x1b[1;31mYou have entered wrong login details.\n\x1b[1;36mDo you want to exit?\n1. Yes\n2. No\n\x1b[1;34mYour choice:\x1b[0m ");
+        choice:
+            scanf("%d", &ask);
+            switch (ask)
+            {
+            case 1:
                 return 1;
                 break;
 
+            case 2:
+                goto pass;
+                break;
+
             default:
-            printf("\x1b[1;31mInvalid entry!\x1b[0m\n");
-            goto start;           
+                printf("\x1b[1;36mEnter a valid choice:\x1b[0m ");
+                goto choice;
+            }
+        }
 
+        fclose(file);
+        break;
 
-                }
-           
+    case 3:
 
-    end:
+        return 1;
+        break;
+
+    default:
+        printf("\x1b[1;31mInvalid entry!\x1b[0m\n");
+        goto start;
+    }
+
+end:
     return 0;
 }
 
@@ -271,3 +329,4 @@ void showLoading()
 
     printf("                     \n");
 }
+

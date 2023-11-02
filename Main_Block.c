@@ -6,53 +6,44 @@
 #include "Registration.c"
 int main()
 {
-    int user_input;
-    registration_driver();
-    if (registration_driver != 0)
+    int user_input, user;
+    user = registration_driver();
+    if (user == 1)
     {goto the_end;
 }
    start:
-   printf("\x1b[1;36m\n\nWhat would you like to do?\n");
-   printf("1. Check Balance\n2. Deposit\n3. Withdraw\n4. Create an FD\n5. Apply for Loan\n6. Apply for Insurance\n7. Exit\n");
-   printf("\x1b[1;34mYour choice: \x1b[0m"); re_enter:
-   scanf("%d", &user_input);
+   printf("\n\n\x1b[1;36mWhat would you like to do?\n");
+   
+       printf("\x1b[1;36m1. Create an FD\n2. Apply for Loan\n3. Apply for Insurance\n4. Exit\n\x1b[1;34mYour Choice: \x1b[0m"); enter_2:
+       scanf("%d", &user_input);
 
-   switch(user_input)
+       switch(user_input)
    {
     case 1:
-    //Check Balance
+    fd_driver();
+    goto start;
     break;
 
     case 2:
-    //Deposit Money
-    break;
-
-    case 3:
-    //Withdraw
-    break;
-
-    case 4:
-    fd_driver();
-    break;
-
-    case 5:
     loan_driver();
     goto start;
     break;
 
-    case 6:
+    case 3:
     insurance_driver();
     goto start;
     break;
 
-    case 7:
+    case 4:
     goto the_end;
     break;
 
     default:
     printf("\x1b[1;31mInvalid input!\n\x1b[1;36mEnter a valid choice:\x1b[0m ");
-    goto re_enter;
+    goto enter_2;
    }
+
+   
 the_end:
 printf("\n\x1b[1;33mDo visit us again..\x1b[0m");
     return 0;
