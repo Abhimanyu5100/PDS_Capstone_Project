@@ -527,6 +527,7 @@ void interest_business(int cibilscore, int loan_amount, int tenure, float income
 void final_output(int interest_rate, float approved_loan, int tenure, float EMI)
 {
     show_processing2();
+    system("cls");
     printf("\n________________________________________________________________________________________________\n");
     printf("Congratulations!\nYour loan has been approved.\n");
     printf("Loan details:\n");
