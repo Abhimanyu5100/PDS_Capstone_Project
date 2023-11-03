@@ -147,10 +147,10 @@ start:
 
         for (i = 0; i < n; i++)
         {
-            fscanf(file, "%s,%s,%d,%lld,%lld,%s,%d\n",
-                   account[i].name,
-                   account[i].address,
+            fscanf(file, "%d,%s,%s,%lld,%lld,%s,%d\n",
                    &account[i].age,
+                   account[i].address,
+                   account[i].name,
                    &account[i].phone_no,
                    &account[i].account_no,
                    account[i].password,
@@ -214,7 +214,7 @@ start:
         while (fscanf(file, "%lld,%s", &account[i].account_no, account[i].password) != EOF)
         {
             fscanf(file, "%lld,%s\n", &account[i].account_no, account[i].password);
-            if (account[i].account_no == log && (strcmp(account[i].password, passw) == 0))
+            if (& account[i].account_no == log && (strcmp(account[i].password, passw) == 0))
             {
                 file_check++;
                 printf("\n\x1b[1;32mYou have succesfully logged into your account.\x1b[0m\n");
@@ -331,4 +331,8 @@ void showLoading()
 
     printf("                     \n");
 }
-
+int main()
+{
+    registration_driver();
+    return 0;
+}
