@@ -115,25 +115,12 @@ void FD()
     char name[100];
     int withdrawalDuration;
 
-     printf("\n\n\x1b[1;33m                                                             WELCOME TO THE FD SECTION\x1b[0m");
+     printf("\n\n\x1b[1;33m                                                             WELCOME TO THE FD SECTION\x1b[0m\n");
 
 
 name:
-    printf("\nEnter the Account holder name: ");
-    fgets(name, sizeof(name), stdin); // Input of Account holder name
-    for (int o = 0; o < strlen(name); o++)
-    {
-        if (name[o] >= 'a' && name[o] <= 'z' || name[o] >= 'A' && name[o] <= 'Z')
-        {
-            continue;
-        }
-        else
-        {
-            printf("Enter a valid name");
-            goto name;
-        }
-    }
-    printf("Enter your Account number from which you want to deposit amount for FD : ");
+    
+    printf("\nEnter your Account number from which you want to deposit amount for FD : ");
     scanf("%0200d", &AccountNo); // Input of Account Number
 
 // Using of goto function to recall in scenerio of invalid duration
@@ -223,7 +210,6 @@ SeniorCitizen:
             loading_screen();
             printf("\nYour FD account has been created and your details are follows : ");
 
-            printf("\n\nAccount Holder name - %s", name);
             accountNumber = rand() % 9000000000 + 1000000000;
 
             printf("\nNew FD account - %010d", accountNumber);

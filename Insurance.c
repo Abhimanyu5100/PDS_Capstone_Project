@@ -48,7 +48,7 @@ int insurance()
     char ph[100], benefi[100];
     srand(time(NULL));
 
-     printf("\n\n\x1b[1;33m                                                             WELCOME TO THE INSURANCE SECTION\x1b[0m");
+     printf("\n\n\x1b[1;33m                                                             WELCOME TO THE INSURANCE SECTION\x1b[0m\n");
 
 start:
     printf("\nChoose from the following options");

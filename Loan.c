@@ -26,7 +26,7 @@ int loan_driver()
 {
     int input;
 
-    printf("\n\n\x1b[1;33m                                                             WELCOME TO THE LOAN SECTION\x1b[0m");
+    printf("\n\n\x1b[1;33m                                                             WELCOME TO THE LOAN SECTION\x1b[0m\n");
 
 start:
     printf("\x1b[1;37m\nPlease enter your CIBIL score: ");
