@@ -115,6 +115,9 @@ void FD()
     char name[100];
     int withdrawalDuration;
 
+     printf("\n\n\x1b[1;33m                                                             WELCOME TO THE FD SECTION\x1b[0m");
+
+
 name:
     printf("\nEnter the Account holder name: ");
     fgets(name, sizeof(name), stdin); // Input of Account holder name

@@ -47,6 +47,9 @@ int insurance()
     float premium;
     char ph[100], benefi[100];
     srand(time(NULL));
+
+     printf("\n\n\x1b[1;33m                                                             WELCOME TO THE INSURANCE SECTION\x1b[0m");
+
 start:
     printf("\nChoose from the following options");
     printf("\n1. Life insurance");

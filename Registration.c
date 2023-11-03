@@ -247,11 +247,11 @@ start:
                     printf("\x1b[1;36mThe balace in your account is:\x1b[0m ");
                     printf("%d", account[i].amount);
                 withdraw:
-                    printf("\x1b[1;36mEnter the amount to withdraw:\x1b[0m ");
+                    printf("\n\x1b[1;36mEnter the amount to withdraw:\x1b[0m ");
                     scanf("%d", &with);
                     if (with > account[i].amount)
                     {
-                        printf("\x1b[1;36mYou don't have enough balance in your account.\x1b[0m");
+                        printf("\n\x1b[1;31mYou don't have enough balance in your account.\x1b[0m");
                         goto withdraw;
                     }
                     else
@@ -269,7 +269,7 @@ start:
                     return 1;
 
                 default:
-                    printf("Invalid input!\n");
+                    printf("\x1b[1;31mInvalid input!\x1b[0m\n");
                     goto go_back;
                 }
 
