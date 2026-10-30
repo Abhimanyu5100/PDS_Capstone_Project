@@ -35,6 +35,87 @@ bin/plutus-load -p 4 -t 8 -n 100     # 32 simulated customers in 4 processes
 Data goes into `./plutus-data/` (database, WAL, statement history, log,
 sockets). Use `-D DIR` on every program to pick another directory.
 
+## See it run
+
+Open three terminals in the project directory.
+
+**Terminal 1: the bank.** It shows the live server log. Ctrl-C shuts it down cleanly.
+
+```sh
+make
+rm -rf plutus-data          # optional: start with an empty bank
+bin/plutusd --month 20      # one bank month = 20 s, so interest shows up quickly
+```
+
+**Terminal 2: the live dashboard**, read straight from shared memory.
+
+```sh
+bin/plutus-admin top
+```
+
+**Terminal 3: run the demo one block at a time.**
+
+1. Customers and banking. On an empty bank, the first two accounts are
+   `1000000016` and `1000000024`.
+
+   ```sh
+   bin/plutus REGISTER "Abhimanyu Singh" Pune 21 9876543210 secret123 50000
+   bin/plutus REGISTER "Riya Sharma" Delhi 22 9123456780 riya4567 20000
+   a() { bin/plutus -u 1000000016 -p secret123 "$@"; }
+   a TRANSFER 1000000024 7500
+   a WITHDRAW 2000
+   a BALANCE
+   a FD_QUOTE 100000 24 0                  # amount, months, senior (0/1)
+   a FD_OPEN 25000 12 0
+   a LOAN_APPLY 760 home 20 120 120000     # CIBIL, type, lakhs, months, monthly income
+   a LOAN_DRAW 3000000001 500000           # checked by the Banker's algorithm
+   a INS_QUOTE life 2 0 0                  # cover choice 1/2/3 = 50 lakh / 1 crore / 2 crore
+   a STATEMENT 5
+   bin/plutus-admin banker
+   ```
+
+2. CPU scheduling: the same eight jobs under all six algorithms, with Gantt charts.
+
+   ```sh
+   bin/plutus-admin scenario sched 3
+   ```
+
+3. Deadlock, live on real accounts: four transfers in a ring.
+
+   ```sh
+   bin/plutus-admin set deadlock none
+   bin/plutus-admin scenario deadlock 4    # hangs, prints the cycle, then rescues it
+   bin/plutus-admin set deadlock detect
+   bin/plutus-admin scenario deadlock 4    # the detector aborts a victim; done in ~150 ms
+   ```
+
+4. Race condition: lost updates, caught by the auditor process.
+
+   ```sh
+   bin/plutus-admin set race on
+   bin/plutus-load -m hot -p 2 -t 4 -n 25 -a 2     # ends with MISMATCH
+   bin/plutus-admin set race off
+   bin/plutus-admin reconcile
+   ```
+
+5. Crash recovery. Watch terminal 1 restart the engine and replay the WAL.
+
+   ```sh
+   bin/plutus-load -p 2 -t 4 -n 200 &
+   sleep 1; bin/plutus-admin crash; wait   # ends with CONSISTENT
+   a BALANCE                               # nothing acknowledged was lost
+   ```
+
+6. Paging: FIFO, LRU, Clock and OPT, including Belady's anomaly.
+
+   ```sh
+   bin/plutus-admin scenario paging
+   ```
+
+`bin/plutus` with no arguments opens the menu-driven terminal from the
+original project. `bin/plutus-admin` with no arguments opens the operator
+console (type `help`).
+
 ## Where each OS concept lives
 
 | OS topic | In the bank | Code |
